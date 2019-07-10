@@ -3,18 +3,14 @@
 function grouping_count(collection) {
 
   //implement here
-  var result = {};
-  collection.forEach((item) => {
-       let flag = false;
-       for(let key in result){
-          if(parseInt(key) == item){
-             flag = true;
-             result[`"${item}"`] ++;
-          }
-          if(!flag)
-            result[`"${item}"`] = 1;
-       } 
-  });
+  let result = collection.reduce((initValue, cur)=>{
+    if(cur in initValue)
+      initValue[cur]++;
+    else
+      initValue[cur] =1;
+    
+    return initValue;
+  },{});
   return result;
 }
 
